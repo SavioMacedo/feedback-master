@@ -48,9 +48,7 @@ public class LoginBean {
             return "principal";
         } 
         FacesMessage msg = new FacesMessage(
-                FacesMessage.SEVERITY_ERROR, 
-                "Falha de Autenticação",
-                "Usuário ou senha inválidos.");
+        FacesMessage.SEVERITY_ERROR, "Falha de Autenticação", "Usuário ou senha inválidos.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         return null;
     }    

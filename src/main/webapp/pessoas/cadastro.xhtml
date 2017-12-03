@@ -32,7 +32,10 @@
                         <p:outputLabel value="E-Mail:" for="email" />
                         <p:inputText id="email" value="#{pessoaCadastroBean.pessoa.email}"/>
                         <p:outputLabel value="Cargo" for="cargo" />
-                        <p:selectOneMenu id="cargo" value="#{pessoaCadastroBean.pessoa.cargo}"></p:selectOneMenu>
+                        <p:selectOneMenu id="cargo" value="#{pessoaCadastroBean.pessoa.cargo}">
+                            <f:selectItem itemLabel="Selecione.." itemValue="" />
+                            <f:selectItems value="#{cargoListarBean.cargos}" var="c" itemLabel="#{c.nome}" itemValue="#{c}" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="Bio" for="bio" />
                         <p:editor id="bio" value="#{pessoaCadastroBean.pessoa.bio}"/>
                     </p:panelGrid>

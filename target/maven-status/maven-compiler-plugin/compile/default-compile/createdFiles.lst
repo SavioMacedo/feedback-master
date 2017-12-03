@@ -7,6 +7,7 @@ com\acme\feedback\facade\CargoFacade.class
 com\acme\feedback\facade\PessoaFacade.class
 com\acme\feedback\model\Usuario.class
 com\acme\feedback\controller\PessoaListarBean.class
+com\acme\feedback\controller\CargoListarBean.class
 com\acme\feedback\facade\UsuarioFacade.class
 com\acme\feedback\model\Cargo_.class
 com\acme\feedback\bean\UsuarioLogado.class
