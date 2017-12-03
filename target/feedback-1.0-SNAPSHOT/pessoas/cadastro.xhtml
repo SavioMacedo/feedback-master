@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template.xhtml">
+
+            <ui:define name="title">
+                Cadastro de Pessoas | Feedback
+            </ui:define>
+
+            <ui:define name="content">
+                <f:metadata>
+                    <f:viewParam name="id" value="#{pessoaCadastroBean.selectId}"/>
+                </f:metadata>
+                <h:form>
+                    <p:messages ></p:messages>
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <p:outputLabel value="Nome:" for="nome" />
+                        <p:inputText id="nome" value="#{pessoaCadastroBean.pessoa.nome}"/>
+                        <p:outputLabel value="Sobrenome:" for="sobrenome" />
+                        <p:inputText id="sobrenome" value="#{pessoaCadastroBean.pessoa.sobrenome}"/>
+                        <p:outputLabel value="Data de Nascimento:" for="datanasc" />
+                        <p:calendar id="datanasc" pattern="dd/MM/yyyy" value="#{pessoaCadastroBean.pessoa.nascimento}" />
+                        <p:outputLabel value="URL Foto:" for="url" />
+                        <p:inputText id="url" value="#{pessoaCadastroBean.pessoa.fotoUrl}"/>
+                        <p:outputLabel value="E-Mail:" for="email" />
+                        <p:inputText id="email" value="#{pessoaCadastroBean.pessoa.email}"/>
+                        <p:outputLabel value="Cargo" for="cargo" />
+                        <p:selectOneMenu id="cargo" value="#{pessoaCadastroBean.pessoa.cargo}"></p:selectOneMenu>
+                        <p:outputLabel value="Bio" for="bio" />
+                        <p:editor id="bio" value="#{pessoaCadastroBean.pessoa.bio}"/>
+                    </p:panelGrid>
+                    <div style="clear: both; padding-top: 10px" />
+                    <p:button value="Voltar" style="float: left" icon="ui-icon-back" outcome="/pessoas/listar"/>
+                    <p:commandButton ajax="false" value="Salvar" style="float: right" icon="ui-icon-save" action="#{pessoaCadastroBean.salvar()}"/>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
