@@ -5,9 +5,11 @@ C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\util\Hash.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\controller\PessoaCadastroBean.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\model\Pessoa.java
+C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\model\Feedback.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\facade\UsuarioFacade.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\model\Cargo.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\model\Usuario.java
+C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\controller\FeedbackListarBean.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\controller\LoginBean.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\controller\PessoaListarBean.java
 C:\Users\crist\Documents\GitHub\feedback-master\src\main\java\com\acme\feedback\bean\UsuarioLogado.java

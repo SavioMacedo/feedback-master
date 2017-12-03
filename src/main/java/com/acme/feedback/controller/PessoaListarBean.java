@@ -23,6 +23,7 @@ public class PessoaListarBean {
     private PessoaFacade facade;
     private List<Pessoa> pessoas;
     private String nomeBusca;
+    private List<Pessoa> pessoasBuscadas = null;
     
     public List<Pessoa> getPessoas() {
         return pessoas;
@@ -44,11 +45,15 @@ public class PessoaListarBean {
     public void setNomeBusca(String nomeBusca) {
         this.nomeBusca = nomeBusca;
     }
+
+    public List<Pessoa> getPessoasBuscadas() {
+        return pessoasBuscadas;
+    }
     
-    public List<Pessoa> buscaPorNome(){
-        List<Pessoa> pessoasBuscadas = facade.findByName(nomeBusca);
+    public String buscaPorNome(){
+        pessoasBuscadas = facade.findByName(nomeBusca);
         if (pessoasBuscadas != null){
-            return pessoasBuscadas;
+            return "/pessoas/buscaPorNome";
         }
         return null;
     }

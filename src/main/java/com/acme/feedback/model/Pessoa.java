@@ -6,6 +6,7 @@
 package com.acme.feedback.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +37,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Pessoa.buscaPorNome", query = "SELECT p FROM Pessoa p WHERE p.nome LIKE :nome OR p.sobrenome LIKE :nome")
 })
 public class Pessoa implements Serializable {
+
+    @OneToMany(mappedBy = "pessoa")
+    private Collection<Feedback> feedbackCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -174,6 +179,14 @@ public class Pessoa implements Serializable {
     @Override
     public String toString() {
         return "com.acme.feedback.model.Pessoa[ id=" + id + " ]";
+    }
+
+    public Collection<Feedback> getFeedbackCollection() {
+        return feedbackCollection;
+    }
+
+    public void setFeedbackCollection(Collection<Feedback> feedbackCollection) {
+        this.feedbackCollection = feedbackCollection;
     }
     
 }

@@ -1,16 +1,16 @@
 package com.acme.feedback.facade;
 
-import com.acme.feedback.model.Cargo;
+import com.acme.feedback.model.Feedback;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author welington
+ * @author crist
  */
 @Stateless
-public class CargoFacade extends AbstractFacade<Cargo> {
+public class FeedbackFacade extends AbstractFacade<Feedback> {
 
     @PersistenceContext(unitName = "feedback_pu")
     private EntityManager em;
@@ -20,8 +20,8 @@ public class CargoFacade extends AbstractFacade<Cargo> {
         return em;
     }
 
-    public CargoFacade() {
-        super(Cargo.class);
+    public FeedbackFacade() {
+        super(Feedback.class);
     }
-    
 }
+

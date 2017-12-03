@@ -21,6 +21,35 @@
                         <p:inputText id="nome" value="#{pessoaListarBean.nomeBusca}"/>
                         <p:commandButton ajax="false" icon="ui-icon-search" value="Buscar" action="#{pessoaListarBean.buscaPorNome()}"/>
                     </p:panelGrid>
+                    <p:panelGrid columns="1" style="width: 100%">
+                        <p:dataTable var="pessoa" value="#{pessoaListarBean.pessoasBuscadas}">
+                            <f:facet name="header">
+                                Pessoas
+                            </f:facet>
+                            <p:column headerText="Foto">
+                                <p:graphicImage value="#{pessoa.fotoUrl}" width="130" height="150"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{pessoa.nome}"/>
+                            </p:column>
+                            <p:column headerText="Data de Nascimento">
+                                <h:outputText value="#{pessoa.nascimento}">
+                                    <f:convertDateTime type="date"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Cargo">
+                                <h:outputText value="#{pessoa.cargo.nome}"/>
+                            </p:column>
+                            <p:column headerText="Ações">
+                            <p:button icon="ui-icon-script" title="Editar" outcome="/pessoas/cadastro" >
+                                <f:param name="id" value="#{pessoa.id}" />
+                            </p:button>
+                            <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
+                                <f:param name="id" value="#{pessoa.id}" />
+                            </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
                 </h:form>
             </ui:define>
         </ui:composition>
