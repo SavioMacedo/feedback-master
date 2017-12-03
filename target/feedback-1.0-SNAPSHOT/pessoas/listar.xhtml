@@ -11,14 +11,14 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="title">
-                Cadastro de Pessoas | Feedback
+                Pessoas Cadastradas | Feedback
             </ui:define>
 
             <ui:define name="content">
                 <p:panelGrid columns="1">
                     <p:dataTable var="pessoa" value="#{pessoaListarBean.pessoas}">
                     <f:facet name="header">
-                        Cadastro de Pessoas
+                        Pessoas
                     </f:facet>
                         <p:column headerText="Foto">
                             <p:graphicImage value="#{pessoa.fotoUrl}" width="130" height="150"/>

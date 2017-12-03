@@ -42,7 +42,6 @@ public class LoginBean {
     }
     
     public String entrar(){
-        
         Optional<Usuario> usuario = facade.findByCredenciais(login, senha);
         if (usuario.isPresent()){
             return "principal";

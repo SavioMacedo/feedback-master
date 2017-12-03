@@ -21,6 +21,9 @@
                 <h:form>
                     <p:messages ></p:messages>
                     <p:panelGrid columns="2" style="width: 100%">
+                        <f:facet name="header">
+                            Cadastro de Pessoa
+                        </f:facet>
                         <p:outputLabel value="Nome:" for="nome" />
                         <p:inputText id="nome" value="#{pessoaCadastroBean.pessoa.nome}"/>
                         <p:outputLabel value="Sobrenome:" for="sobrenome" />

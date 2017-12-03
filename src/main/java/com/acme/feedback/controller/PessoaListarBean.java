@@ -3,8 +3,11 @@ package com.acme.feedback.controller;
 import com.acme.feedback.facade.PessoaFacade;
 import com.acme.feedback.model.Pessoa;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,7 +22,8 @@ public class PessoaListarBean {
     @Inject
     private PessoaFacade facade;
     private List<Pessoa> pessoas;
-
+    private String nomeBusca;
+    
     public List<Pessoa> getPessoas() {
         return pessoas;
     }
@@ -31,6 +35,22 @@ public class PessoaListarBean {
     public String excluir(Pessoa pessoa){
         facade.remove(pessoa);
         return "/pessoas/listar?faces-redirect=true";
+    }
+
+    public String getNomeBusca() {
+        return nomeBusca;
+    }
+
+    public void setNomeBusca(String nomeBusca) {
+        this.nomeBusca = nomeBusca;
+    }
+    
+    public List<Pessoa> buscaPorNome(){
+        List<Pessoa> pessoasBuscadas = facade.findByName(nomeBusca);
+        if (pessoasBuscadas != null){
+            return pessoasBuscadas;
+        }
+        return null;
     }
     
     @PostConstruct
