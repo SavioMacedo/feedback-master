@@ -3,11 +3,8 @@ package com.acme.feedback.controller;
 import com.acme.feedback.facade.PessoaFacade;
 import com.acme.feedback.model.Pessoa;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 

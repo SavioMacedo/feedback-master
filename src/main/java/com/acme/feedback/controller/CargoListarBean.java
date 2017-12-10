@@ -28,6 +28,11 @@ public class CargoListarBean {
         this.cargos = cargos;
     }
     
+    public String excluir(Cargo cargo){
+        facade.remove(cargo);
+        return "/cargo/listarCargo?faces-redirect=true";
+    }
+    
     @PostConstruct
     public void init(){
         cargos = facade.findAll();

@@ -50,9 +50,7 @@
                             <p:button icon="ui-icon-comment" title="Enviar Feedback">
                                 <f:param name="id" value="#{pessoa.id}" />
                             </p:button>
-                            <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
-                                <f:param name="id" value="#{pessoa.id}" />
-                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}" />
                         </p:column>
                     </p:dataTable>
                 </p:panelGrid>
