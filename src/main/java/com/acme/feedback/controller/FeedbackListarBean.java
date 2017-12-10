@@ -2,7 +2,6 @@ package com.acme.feedback.controller;
 
 import com.acme.feedback.facade.FeedbackFacade;
 import com.acme.feedback.model.Feedback;
-import java.util.Optional;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
