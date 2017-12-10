@@ -31,7 +31,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "FEEDBACK")
 @NamedQueries({
-    @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")})
+    @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f"),
+    @NamedQuery(name = "Feedback.countPositive", query = "SELECT COUNT(f.positivo) FROM Feedback f WHERE f.positivo = 1 AND f.id = :id"),
+    @NamedQuery(name = "Feedback.countNegative", query = "SELECT COUNT(f.negativo) FROM Feedback f WHERE f.negativo = 1 AND f.id = :id")
+})
 public class Feedback implements Serializable {
 
     private static final long serialVersionUID = 1L;

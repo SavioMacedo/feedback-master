@@ -31,9 +31,10 @@ public class PessoaFacade extends AbstractFacade<Pessoa> {
     public PessoaFacade() {
         super(Pessoa.class);
     }
+    
     public List<Pessoa> findByName(String string){
         TypedQuery<Pessoa> query = em.createNamedQuery("Pessoa.buscaPorNome", Pessoa.class);
-        query.setParameter("nome", string);
+        query.setParameter("nome", "%"+string+"%");
         try {
             return query.getResultList();
         } catch (NoResultException e) {
