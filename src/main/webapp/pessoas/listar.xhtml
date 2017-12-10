@@ -11,17 +11,17 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="title">
-                Cadastro de Pessoas | Feedback
+                Pessoas Cadastradas | Feedback
             </ui:define>
 
             <ui:define name="content">
                 <p:panelGrid columns="1">
                     <p:dataTable var="pessoa" value="#{pessoaListarBean.pessoas}">
                     <f:facet name="header">
-                        Cadastro de Pessoas
+                        Pessoas
                     </f:facet>
                         <p:column headerText="Foto">
-                            <p:graphicImage value="#{pessoa.fotoUrl}"/>
+                            <p:graphicImage value="#{pessoa.fotoUrl}" width="110" height="140"/>
                         </p:column>
                         <p:column headerText="Nome">
                             <h:outputText value="#{pessoa.nome}"/>
@@ -34,11 +34,23 @@
                         <p:column headerText="Cargo">
                             <h:outputText value="#{pessoa.cargo.nome}"/>
                         </p:column>
+                        <p:column headerText="Feedback">
+                            <p:column headerText="Positivo">
+                                <span icon=""></span>
+                                <h:outputText value="#{feedbackListarBean.feedback.positivo}"/>
+                            </p:column>
+                            <p:column headerText="Negativo">
+                                <h:outputText value="#{feedbackListarBean.feedback.negativo}"/>
+                            </p:column>
+                        </p:column>
                         <p:column headerText="Ações">
-                            <p:button icon="ui-icon-script" outcome="/pessoas/cadastro" >
+                            <p:button icon="ui-icon-script" title="Editar" outcome="/pessoas/cadastro" >
                                 <f:param name="id" value="#{pessoa.id}" />
                             </p:button>
-                            <p:commandButton icon="ui-icon-trash" action="#{pessoaListarBean.excluir(pessoa)}">
+                            <p:button icon="ui-icon-comment" title="Enviar Feedback">
+                                <f:param name="id" value="#{pessoa.id}" />
+                            </p:button>
+                            <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
                                 <f:param name="id" value="#{pessoa.id}" />
                             </p:commandButton>
                         </p:column>
