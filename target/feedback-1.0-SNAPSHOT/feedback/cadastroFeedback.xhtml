@@ -13,41 +13,56 @@
             <ui:define name="title">
                 Cadastro de Feedback | Feedback
             </ui:define>
-
+            
             <ui:define name="content">
-                <p:panelGrid columns="1">
-                    <p:dataTable var="pessoa" value="#{pessoaListarBean.pessoas}">
-                    <f:facet name="header">
-                        Pessoas
-                    </f:facet>
-                        <p:column headerText="Foto">
-                            <p:graphicImage value="#{pessoa.fotoUrl}" width="130" height="150"/>
+                <f:metadata>
+                    <f:viewParam name="idPessoa" value="#{Feedback.selectIdPessoa}"/>
+                </f:metadata>
+
+                <!-- Cadastro de Feedback -->
+                <h:form>
+                    <p:messages ></p:messages>
+                    <p:panelGrid columns="1" style="width: 100%">
+                        <f:facet name="header">
+                            Cadastro de Feedback
+                        </f:facet>
+                        <p:outputLabel value="Discorra sobre #{Feedback.feedback.pessoa.nome}:" for="feedback" />
+                        <p:editor id="feedback" value="#{Feedback.feedback.texto}"/>
+                        <p:outputLabel value="Seu feedback é... " />
+                        <p:selectOneMenu id="qualitativo" style="width:150px" value="#{Feedback.tipoFeedback}">
+                            <f:selectItem itemLabel="Selecione o Tipo" itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Positivo" itemValue="1" />
+                            <f:selectItem itemLabel="Negativo" itemValue="0" />
+                        </p:selectOneMenu>
+                        <div style="clear: both; padding-top: 10px" />
+                        <p:commandButton ajax="false" value="Cadastrar Feedback" style="float: left" icon="ui-icon-plus" action="#{Feedback.Salvar()}"/>
+                    </p:panelGrid>
+                </h:form>
+                    
+                <p:panelGrid columns="1" style="margin-top: 2%;">
+                    <p:dataTable var="feedbacks" value="#{Feedback.feedbacksBuscados}">
+                        <f:facet name="header">
+                            Feedbacks cadastrados para #{Feedback.feedback.pessoa.nome} #{Feedback.feedback.pessoa.sobrenome}
+                        </f:facet>
+                        <p:column headerText="Feedback">
+                            <h:outputText value="#{feedbacks.texto}"/>
                         </p:column>
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{pessoa.nome}"/>
-                        </p:column>
-                        <p:column headerText="Data de Nascimento">
-                            <h:outputText value="#{pessoa.nascimento}">
+                        <p:column headerText="Data de Publicação">
+                            <h:outputText value="#{feedbacks.dataPublicacao}">
                                 <f:convertDateTime type="date"/>
                             </h:outputText>
-                        </p:column>
-                        <p:column headerText="Cargo">
-                            <h:outputText value="#{pessoa.cargo.nome}"/>
+                        </p:column> 
+                        <p:column headerText="Tipo" style="text-align: center">
+                            <h:graphicImage height="50" width="50" value="/resources/img/thumb-up (1).png" rendered="#{feedbacks.positivo == 1}" />
+                            <h:graphicImage height="50" width="50" value="/resources/img/thumb-down.png" rendered="#{feedbacks.negativo == 1}" />
                         </p:column>
                         <p:column headerText="Ações">
                             <p:button icon="ui-icon-script" title="Editar" outcome="/pessoas/cadastro" >
                                 <f:param name="id" value="#{pessoa.id}" />
                             </p:button>
-                            <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
-                                <f:param name="id" value="#{pessoa.id}" />
-                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:panelGrid>
-                <div style="padding-top: 10px; clear: both">
-                    
-                </div>
-                <p:button value="Adicionar" icon="ui-icon-plus" outcome="/pessoas/cadastro" style="float: left"/>
             </ui:define>
 
         </ui:composition>

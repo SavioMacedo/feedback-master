@@ -30,7 +30,8 @@ public class PessoaCadastroBean {
         return pessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
+    public void setPessoa(Pessoa pessoa) 
+    {
         this.pessoa = pessoa;
     }
     

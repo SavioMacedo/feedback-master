@@ -1,6 +1,8 @@
 package com.acme.feedback.facade;
 
 import com.acme.feedback.model.Feedback;
+import com.acme.feedback.model.Pessoa;
+import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,37 +16,48 @@ import javax.persistence.TypedQuery;
  * @author crist
  */
 @Stateless
-public class FeedbackFacade extends AbstractFacade<Feedback> {
+public class FeedbackFacade extends AbstractFacade<Feedback> 
+{
 
     @PersistenceContext(unitName = "feedback_pu")
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() 
+    {
         return em;
     }
 
-    public FeedbackFacade() {
+    public FeedbackFacade() 
+    {
         super(Feedback.class);
     }
     
-    public Optional<Feedback> getPositivo(Long id){
-        TypedQuery<Feedback> query = em.createNamedQuery("Feedback.countPositive", Feedback.class);
-        query.setParameter("id", id);
-        try {
-            return Optional.of(query.getSingleResult());
-        } catch (NonUniqueResultException | NoResultException e) {
-            return Optional.empty();
-        }
-    }
+//    public Long totalAvaliacoes(Long idPessoa)
+//    {
+//        TypedQuery<Feedback> query = em.createNamedQuery("Feedback.todosPessoa", Feedback.class);
+//        query.setParameter("idPessoa", idPessoa);
+//        try 
+//        {
+//            return query.getResultList();
+//        } 
+//        catch (NoResultException e) 
+//        {
+//            return null;
+//        }
+//    }
     
-    public Optional<Feedback> getNegativo(Long id){
-        TypedQuery<Feedback> query = em.createNamedQuery("Feedback.countNegative", Feedback.class);
-        query.setParameter("id", id);
-        try {
-            return Optional.of(query.getSingleResult());
-        } catch (NonUniqueResultException | NoResultException e) {
-            return Optional.empty();
+    public List<Feedback> findByPessoaID(Long idPessoa)
+    {
+        TypedQuery<Feedback> query = em.createNamedQuery("Feedback.todosPessoa", Feedback.class);
+        query.setParameter("idPessoa", idPessoa);
+        try 
+        {
+            return query.getResultList();
+        } 
+        catch (NoResultException e) 
+        {
+            return null;
         }
     }
 }

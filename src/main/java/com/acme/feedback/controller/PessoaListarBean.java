@@ -7,7 +7,9 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,7 +19,8 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class PessoaListarBean {
+public class PessoaListarBean 
+{
     
     @Inject
     private PessoaFacade facade;
@@ -25,15 +28,18 @@ public class PessoaListarBean {
     private String nomeBusca;
     private List<Pessoa> pessoasBuscadas = null;
     
-    public List<Pessoa> getPessoas() {
+    public List<Pessoa> getPessoas() 
+    {
         return pessoas;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
+    public void setPessoas(List<Pessoa> pessoas) 
+    {
         this.pessoas = pessoas;
     }
     
-    public String excluir(Pessoa pessoa){
+    public String excluir(Pessoa pessoa)
+    {
         facade.remove(pessoa);
         return "/pessoas/listar?faces-redirect=true";
     }
@@ -50,7 +56,8 @@ public class PessoaListarBean {
         return pessoasBuscadas;
     }
     
-    public String buscaPorNome(){
+    public String buscaPorNome()
+    {
         pessoasBuscadas = facade.findByName(nomeBusca);
         if (pessoasBuscadas != null){
             return "/pessoas/buscaPorNome";
@@ -59,7 +66,8 @@ public class PessoaListarBean {
     }
     
     @PostConstruct
-    public void init(){
+    public void init()
+    {
         pessoas = facade.findAll();
     }
 }

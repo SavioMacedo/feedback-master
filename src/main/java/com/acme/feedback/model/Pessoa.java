@@ -36,7 +36,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
     @NamedQuery(name = "Pessoa.buscaPorNome", query = "SELECT p FROM Pessoa p WHERE p.nome LIKE :nome OR p.sobrenome LIKE :nome")
 })
-public class Pessoa implements Serializable {
+public class Pessoa implements Serializable 
+{
 
     @OneToMany(mappedBy = "pessoa")
     private Collection<Feedback> feedbackCollection;

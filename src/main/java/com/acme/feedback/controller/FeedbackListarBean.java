@@ -21,11 +21,4 @@ public class FeedbackListarBean {
     public Feedback getFeedback() {
         return feedback;
     }
-
-    public void setFeedback(Long id) {
-        Feedback feedPos = facade.getPositivo(id).get();
-        Feedback feedNeg = facade.getNegativo(id).get();
-        this.feedback.setPositivo(feedPos.getPositivo());
-        this.feedback.setNegativo(feedNeg.getNegativo());
-    }    
 }

@@ -41,20 +41,15 @@
                                 <h:outputText value="#{pessoa.cargo.nome}"/>
                             </p:column>
                             <p:column headerText="Feedback">
-                                <p:column headerText="Positivo">
-                                    <span icon=""></span>
-                                    <h:outputText value="#{feedbackListarBean.feedback.positivo}"/>
-                                </p:column>
-                                <p:column headerText="Negativo">
-                                    <h:outputText value="#{feedbackListarBean.feedback.negativo}"/>
-                                </p:column>
+                                <h:outputText value="Sem Feedbacks" rendered="#{(pessoa.feedbackCollection.size() == 0)}" />
+                                <p:progressBar labelTemplate="{value}% Positivos" rendered="#{pessoa.feedbackCollection.size() > 0}" styleClass="animated" value="#{((pessoa.feedbackCollection.stream().filter(clausula -> clausula.positivo == 1).toList().size() / pessoa.feedbackCollection.size()) * 100)}" />
                             </p:column>
                             <p:column headerText="Ações">
                                 <p:button icon="ui-icon-script" title="Editar" outcome="/pessoas/cadastro" >
                                     <f:param name="id" value="#{pessoa.id}" />
                                 </p:button>
-                                <p:button icon="ui-icon-comment" title="Enviar Feedback">
-                                    <f:param name="id" value="#{pessoa.id}" />
+                                <p:button icon="ui-icon-comment" title="Enviar Feedback" outcome="/feedback/cadastroFeedback">
+                                    <f:param name="idPessoa" value="#{pessoa.id}" />
                                 </p:button>
                                 <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
                                     <f:param name="id" value="#{pessoa.id}" />
