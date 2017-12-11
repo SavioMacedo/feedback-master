@@ -26,9 +26,7 @@ import javax.validation.constraints.Size;
 @Table(name = "USUARIO")
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.buscaPorCredenciais", 
-            query = "SELECT u FROM Usuario u "
-                    + "where u.login = :login and u.senha = :senha")
+    @NamedQuery(name = "Usuario.buscaPorCredenciais", query = "SELECT u FROM Usuario u " + "where u.login = :login and u.senha = :senha")
 })
 public class Usuario implements Serializable {
 

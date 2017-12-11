@@ -36,7 +36,7 @@ public class PessoaCadastroBean {
     
     public String salvar(){
         if(this.selectId == null){
-        facade.create(pessoa);
+            facade.create(pessoa);
         }else{
             facade.edit(pessoa);
         }

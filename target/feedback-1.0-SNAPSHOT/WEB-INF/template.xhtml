@@ -22,10 +22,11 @@
                             <p:menu>
                                 <p:submenu label="Cadastro">
                                     <p:menuitem value="Pessoas" outcome="/pessoas/listar" icon="ui-icon-person"/>
-                                    <p:menuitem value="Cargo" icon="ui-icon-clipboard"/>
+                                    <p:menuitem value="Cargo" icon="ui-icon-clipboard" outcome="/cargo/listarCargo"/>
                                 </p:submenu>
-                                <p:submenu label="Relatário">
-                                    <p:menuitem value="Pessoas por Cargo" icon="ui-icon-document"/>
+                                <p:submenu label="Relatório">
+                                    <p:menuitem value="Pessoas por Cargo" outcome="/pessoas/buscaPorCargo" icon="ui-icon-document" />
+                                    <p:menuitem value="Pessoas por Nome" outcome="/pessoas/buscaPorNome" icon="ui-icon-search"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>

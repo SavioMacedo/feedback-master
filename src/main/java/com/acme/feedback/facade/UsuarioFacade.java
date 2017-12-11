@@ -44,5 +44,4 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return Optional.empty();
         }
     }
-    
 }

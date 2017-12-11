@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.acme.feedback.controller;
 
 import com.acme.feedback.facade.PessoaFacade;
@@ -24,15 +19,11 @@ public class PessoaListarBean {
     @Inject
     private PessoaFacade facade;
     private List<Pessoa> pessoas;
+    private String nomeBusca;
+    private Long cargoBusca;
 
-    public PessoaFacade getFacade() {
-        return facade;
-    }
-
-    public void setFacade(PessoaFacade facade) {
-        this.facade = facade;
-    }
-
+    private List<Pessoa> pessoasBuscadas = null;
+    
     public List<Pessoa> getPessoas() {
         return pessoas;
     }
@@ -44,6 +35,42 @@ public class PessoaListarBean {
     public String excluir(Pessoa pessoa){
         facade.remove(pessoa);
         return "/pessoas/listar?faces-redirect=true";
+    }
+
+    public String getNomeBusca() {
+        return nomeBusca;
+    }
+
+    public void setNomeBusca(String nomeBusca) {
+        this.nomeBusca = nomeBusca;
+    }
+    
+    public Long getCargoBusca() {
+        return cargoBusca;
+    }
+
+    public void setCargoBusca(Long cargoBusca) {
+        this.cargoBusca = cargoBusca;
+    }
+
+    public List<Pessoa> getPessoasBuscadas() {
+        return pessoasBuscadas;
+    }
+    
+    public String buscaPorNome(){
+        pessoasBuscadas = facade.findByName(nomeBusca);
+        if (pessoasBuscadas != null){
+            return "/pessoas/buscaPorNome";
+        }
+        return null;
+    }
+    
+    public String buscaPorCargo(){
+        pessoasBuscadas = facade.findByCargo(cargoBusca);
+        if (pessoasBuscadas != null){
+            return "/pessoas/buscaPorCargo";
+        }
+        return null;
     }
     
     @PostConstruct

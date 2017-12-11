@@ -42,15 +42,12 @@ public class LoginBean {
     }
     
     public String entrar(){
-        
         Optional<Usuario> usuario = facade.findByCredenciais(login, senha);
         if (usuario.isPresent()){
             return "principal";
         } 
         FacesMessage msg = new FacesMessage(
-                FacesMessage.SEVERITY_ERROR, 
-                "Falha de Autenticação",
-                "Usuário ou senha inválidos.");
+        FacesMessage.SEVERITY_ERROR, "Falha de Autenticação", "Usuário ou senha inválidos.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         return null;
     }    

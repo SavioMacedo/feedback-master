@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
+    <h:body>
+        <ui:composition template="./../WEB-INF/template.xhtml">
+            <ui:define name="title">
+                Pessoas por Cargo | Feedback
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <p:messages ></p:messages>
+                    <p:panelGrid columns="3" style="width: 100%">
+                    <f:facet name="header">
+                        Busca por cargo
+                    </f:facet>
+                        <p:outputLabel value="Cargo:" for="cargo" />
+                        <p:selectOneMenu id="cargo" value="#{pessoaListarBean.cargoBusca}">
+                            <f:selectItem itemLabel="Selecione.." itemValue="" />
+                            <f:selectItems value="#{cargoListarBean.cargos}" var="c" itemLabel="#{c.nome}" itemValue="#{c.id}" />
+                        </p:selectOneMenu>
+                        <p:commandButton ajax="false" icon="ui-icon-search" value="Buscar" action="#{pessoaListarBean.buscaPorCargo()}"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" style="width: 100%">
+                        <p:dataTable var="pessoa" value="#{pessoaListarBean.pessoasBuscadas}">
+                            <f:facet name="header">
+                                Pessoas
+                            </f:facet>
+                            <p:column headerText="Foto">
+                                <p:graphicImage value="#{pessoa.fotoUrl}" width="110" height="140"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{pessoa.nome}"/>
+                            </p:column>
+                            <p:column headerText="Data de Nascimento">
+                                <h:outputText value="#{pessoa.nascimento}">
+                                    <f:convertDateTime type="date"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Cargo">
+                                <h:outputText value="#{pessoa.cargo.nome}"/>
+                            </p:column>
+                            <p:column headerText="Feedback">
+                                <p:column headerText="Positivo">
+                                    <span icon=""></span>
+                                    <h:outputText value="#{feedbackListarBean.feedback.positivo}"/>
+                                </p:column>
+                                <p:column headerText="Negativo">
+                                    <h:outputText value="#{feedbackListarBean.feedback.negativo}"/>
+                                </p:column>
+                            </p:column>
+                            <p:column headerText="Ações">
+                                <p:button icon="ui-icon-script" title="Editar" outcome="/pessoas/cadastro" >
+                                    <f:param name="id" value="#{pessoa.id}" />
+                                </p:button>
+                                <p:button icon="ui-icon-comment" title="Enviar Feedback">
+                                    <f:param name="id" value="#{pessoa.id}" />
+                                </p:button>
+                                <p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pessoaListarBean.excluir(pessoa)}">
+                                    <f:param name="id" value="#{pessoa.id}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
