@@ -6,9 +6,12 @@
 package com.acme.feedback.facade;
 
 import com.acme.feedback.model.Pessoa;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +32,13 @@ public class PessoaFacade extends AbstractFacade<Pessoa> {
         super(Pessoa.class);
     }
     
+    public List<Pessoa> findByName(String string){
+        TypedQuery<Pessoa> query = em.createNamedQuery("Pessoa.buscaPorNome", Pessoa.class);
+        query.setParameter("nome", "%"+string+"%");
+        try {
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

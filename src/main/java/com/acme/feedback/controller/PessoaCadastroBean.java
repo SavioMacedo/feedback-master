@@ -30,13 +30,14 @@ public class PessoaCadastroBean {
         return pessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
+    public void setPessoa(Pessoa pessoa) 
+    {
         this.pessoa = pessoa;
     }
     
     public String salvar(){
         if(this.selectId == null){
-        facade.create(pessoa);
+            facade.create(pessoa);
         }else{
             facade.edit(pessoa);
         }
